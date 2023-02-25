@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seas The Day</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Seas The Day</h1>
+    </div>
+    <div class="container">
+      <div id="map"></div>
+      <div class="weather-details-list">
+        <img id="weather-img" src="weather.jpg" alt="weather" />
+        <ul>
+          <li class="coordinates">lat: 41.6821, lng: -69.9598</li>
+          <li class="date">Date:</li>
+          <li class="time">Time:</li>
+          <li class="temp">Temperature:</li>
+          <!-- try to just keep to Celcius? -->
+          <li class="swell-height">Swell Height:</li>
+          <li class="swell-period">Swell Period:</li>
+          <li class="swell-direction">Swell Direction:</li>
+          <li class="tide">Enter Tide Info Here</li>
+          <!-- check tide???? -->
+          <li class="wind-speed">Wind Speed:</li>
+          <li class="wind-direction">Wind Direction:</li>
+          <li class="description">Description:</li>
+          <li class="precipitation">Precipitation:</li>
+          <li class="humidity">Humidity</li>
+          <li class="visibility">Visibility:</li>
+          <li class="pressure">Pressure:</li>
+          <li class="cloud-cover">Cloud Cover:</li>
+        </ul>
+      </div>
+
+      <div id="bar">
+        <h1>Click the links in the table below to change your date and time</h1>
+        <table class="time-date-bar">
+          <tr></tr>
+          <tr class="days">
+            <th>Day 1</th>
+            <th>Day 2</th>
+            <th>Day 3</th>
+            <th>Day 4</th>
+            <th>Day 5</th>
+            <th>Day 6</th>
+            <th>Day 7</th>
+          </tr>
+          <!-- id for below th, d=day and h=hour -->
+          <tr>
+            <th id="d1h1" class="timeSelector">12:00am</th>
+            <th id="d2h1" class="timeSelector">12:00am</th>
+            <th id="d3h1" class="timeSelector">12:00am</th>
+            <th id="d4h1" class="timeSelector">12:00am</th>
+            <th id="d5h1" class="timeSelector">12:00am</th>
+            <th id="d6h1" class="timeSelector">12:00am</th>
+            <th id="d7h1" class="timeSelector">12:00am</th>
+          </tr>
+          <tr>
+            <th id="d1h2" class="timeSelector">3:00am</th>
+            <th id="d2h2" class="timeSelector">3:00am</th>
+            <th id="d3h2" class="timeSelector">3:00am</th>
+            <th id="d4h2" class="timeSelector">3:00am</th>
+            <th id="d5h2" class="timeSelector">3:00am</th>
+            <th id="d6h2" class="timeSelector">3:00am</th>
+            <th id="d7h2" class="timeSelector">3:00am</th>
+          </tr>
+          <tr>
+            <th id="d1h3" class="timeSelector">6:00am</th>
+            <th id="d2h3" class="timeSelector">6:00am</th>
+            <th id="d3h3" class="timeSelector">6:00am</th>
+            <th id="d4h3" class="timeSelector">6:00am</th>
+            <th id="d5h3" class="timeSelector">6:00am</th>
+            <th id="d6h3" class="timeSelector">6:00am</th>
+            <th id="d7h3" class="timeSelector">6:00am</th>
+          </tr>
+          <tr>
+            <th id="d1h4" class="timeSelector">9:00am</th>
+            <th id="d2h4" class="timeSelector">9:00am</th>
+            <th id="d3h4" class="timeSelector">9:00am</th>
+            <th id="d4h4" class="timeSelector">9:00am</th>
+            <th id="d5h4" class="timeSelector">9:00am</th>
+            <th id="d6h4" class="timeSelector">9:00am</th>
+            <th id="d7h4" class="timeSelector">9:00am</th>
+          </tr>
+          <tr>
+            <th id="d1h5" class="timeSelector">12:00pm</th>
+            <th id="d2h5" class="timeSelector">12:00pm</th>
+            <th id="d3h5" class="timeSelector">12:00pm</th>
+            <th id="d4h5" class="timeSelector">12:00pm</th>
+            <th id="d5h5" class="timeSelector">12:00pm</th>
+            <th id="d6h5" class="timeSelector">12:00pm</th>
+            <th id="d7h5" class="timeSelector">12:00pm</th>
+          </tr>
+          <tr>
+            <th id="d1h6" class="timeSelector">3:00pm</th>
+            <th id="d2h6" class="timeSelector">3:00pm</th>
+            <th id="d3h6" class="timeSelector">3:00pm</th>
+            <th id="d4h6" class="timeSelector">3:00pm</th>
+            <th id="d5h6" class="timeSelector">3:00pm</th>
+            <th id="d6h6" class="timeSelector">3:00pm</th>
+            <th id="d7h6" class="timeSelector">3:00pm</th>
+          </tr>
+          <tr>
+            <th id="d1h7" class="timeSelector">6:00pm</th>
+            <th id="d2h7" class="timeSelector">6:00pm</th>
+            <th id="d3h7" class="timeSelector">6:00pm</th>
+            <th id="d4h7" class="timeSelector">6:00pm</th>
+            <th id="d5h7" class="timeSelector">6:00pm</th>
+            <th id="d6h7" class="timeSelector">6:00pm</th>
+            <th id="d7h7" class="timeSelector">6:00pm</th>
+          </tr>
+          <tr>
+            <th id="d1h8" class="timeSelector">9:00pm</th>
+            <th id="d2h8" class="timeSelector">9:00pm</th>
+            <th id="d3h8" class="timeSelector">9:00pm</th>
+            <th id="d4h8" class="timeSelector">9:00pm</th>
+            <th id="d5h8" class="timeSelector">9:00pm</th>
+            <th id="d6h8" class="timeSelector">9:00pm</th>
+            <th id="d7h8" class="timeSelector">9:00pm</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyiDGnuaDd3qw5UnkVseoagKiVmI3tcGc&callback=initMap"
+    ></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
