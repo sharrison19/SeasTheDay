@@ -68,19 +68,25 @@ th {
   font-size: 20px;
 }
 
-a:link {
-  color: black;
-}
-
-a:visited {
-  text-decoration: none;
+a:hover {
+  color: white;
 }
 
 .timeSelector:hover {
   color: white;
 }
 
-a:active {
-  font-size: 18px;
-  color: rgb(60, 222, 222);
+/* tides.html css */
+
+.tide-information ul {
+  font-size: 20px;
+  list-style-type: none;
+  width: 45%;
+  float: right;
+  margin-top: 10px;
+  height: 500px;
+}
+
+.tide-information li {
+  margin-bottom: 5px;
 }

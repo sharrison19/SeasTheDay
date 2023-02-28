@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seas The Day</title>
+    <title>Seas The Day - Home</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -16,16 +16,13 @@
       <div class="weather-details-list">
         <img id="weather-img" src="weather.jpg" alt="weather" />
         <ul>
-          <li class="coordinates">lat: 41.6821, lng: -69.9598</li>
+          <li class="coordinates">(Latitude, Longitude)</li>
           <li class="date">Date:</li>
           <li class="time">Time:</li>
           <li class="temp">Temperature:</li>
-          <!-- try to just keep to Celcius? -->
           <li class="swell-height">Swell Height:</li>
           <li class="swell-period">Swell Period:</li>
           <li class="swell-direction">Swell Direction:</li>
-          <li class="tide">Enter Tide Info Here</li>
-          <!-- check tide???? -->
           <li class="wind-speed">Wind Speed:</li>
           <li class="wind-direction">Wind Direction:</li>
           <li class="description">Description:</li>
@@ -34,6 +31,7 @@
           <li class="visibility">Visibility:</li>
           <li class="pressure">Pressure:</li>
           <li class="cloud-cover">Cloud Cover:</li>
+          <li class="tides">Click here to get tides information!</li>
         </ul>
       </div>
 
@@ -126,12 +124,12 @@
         </table>
       </div>
     </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="./script.js"></script>
     <script
       async
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyiDGnuaDd3qw5UnkVseoagKiVmI3tcGc&callback=initMap"
     ></script>
-    <script type="module" src="./script.js"></script>
   </body>
 </html>
