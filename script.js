@@ -1,8 +1,23 @@
 const url = "https://api.worldweatheronline.com/premium/v1/marine.ashx";
 const api = "1b982ff97aa44f589c4221439232102";
-// window.initMap = function () {};
 
-// $(() => {
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function setDates(weather) {
+  for (let i = 0; i < weather.length; i++) {
+    const newDate = formatDate(weather[i].date);
+    console.log({ i, date: weather[i].date, newDate });
+    document.querySelector(`.day${i + 1}`).innerHTML = newDate;
+  }
+}
+
 window.initMap = function () {
   console.log("initMapCalled");
   const myLatlng = { lat: 41.6821, lng: -69.9598 };
@@ -50,27 +65,25 @@ window.initMap = function () {
             console.log(day);
             console.log(hour);
             createReport(day, hour, responseObj);
+            tidesReport(day, responseObj);
           })
         );
         createReport(0, 0, responseObj);
       });
   });
 };
-// });
 
 function tidesReport(day, responseObj) {
   let htmlString = "<ul>";
   responseObj.data.weather[day].tides[0].tide_data.forEach((tide) => {
     htmlString += `
-    <li class = "tide-info">
-    Tide Time:  ${tide.tideTime}
-    Tide Height: ${tide.tideHeight_mt} mt
-    Tide Type: ${tide.tide_type}
-    </li>
+    <li class="tideTime">Tide Time:  ${tide.tideTime}</li>
+    <li class="tideHeight">Tide Height: ${tide.tideHeight_mt} mt</li>
+    <li class="tideType">Tide Type: ${tide.tide_type}</li>
       `;
     //{tideTime: '12:02 AM', tideHeight_mt: '0.30', tideDateTime: '2023-02-28 00:02', tide_type: 'LOW'}
   });
-  document.querySelector(".weather-details-list").innerHTML = htmlString;
+  document.querySelector(".tide-details-list").innerHTML = htmlString;
 }
 
 // if th with id "d1h1" is clicked, execute
@@ -114,43 +127,8 @@ function createReport(a, b, responseObj) {
 `;
   document.querySelector(".weather-details-list").innerHTML = htmlString;
 
-  document.querySelector(".tides").addEventListener("click", () => {
+  document.querySelector("#tides-btn").addEventListener("click", () => {
     tidesReport(0, responseObj);
   });
+  setDates(responseObj.data.weather);
 }
-
-//create table days
-// document.querySelector(".day1").innerHTML = responseObj.data.weather[0].date;
-// document.querySelector(".day2").innerHTML = responseObj.data.weather[1].date;
-// document.querySelector(".day3").innerHTML = responseObj.data.weather[2].date;
-// document.querySelector(".day4").innerHTML = responseObj.data.weather[3].date;
-// document.querySelector(".day5").innerHTML = responseObj.data.weather[4].date;
-// document.querySelector(".day6").innerHTML = responseObj.data.weather[5].date;
-// document.querySelector(".day7").innerHTML = responseObj.data.weather[6].date;
-
-// function formatDate(day, responseObj) {
-//   let dateString = "";
-//   const options = { year: "numberic", month: "long", day: "numeric" };
-
-//   for (let day = 0; i < responseObj.data.weather.length; day++) {
-//     let inputDate = new Date(responseObj.data.weather[day].date);
-//     dateString += `
-//     <th class = "day"> ${inputDate.toLocaleDateString(undefined, options)}</th>
-//     `;
-//   }
-//   document.querySelector(".days").innerHTML = dateString;
-// }
-
-// function formatDates(weather) {
-//   return weather.map((weather) => {
-//     const inputDate = new Date(weather.date);
-//     return `<th class = "day">${inputDate.toLocaleDateString(undefined, {
-//       year: "numeric",
-//       month: "long",
-//       day: "numeric",
-//     })}</th>`;
-//   });
-// }
-// document.querySelector(".days").innerHTML = formatDates(
-//   responseObj.data.weather
-// ).join();

@@ -36,16 +36,36 @@ body {
   float: right;
   margin: 10px;
 }
+/* MARINE WEATHER DETAILS LIST */
+.weather-details-list {
+  height: 550px;
+  display: none;
+}
 
 .weather-details-list ul {
   font-size: 20px;
   list-style-type: none;
   width: 35%;
   float: left;
-  height: 500px;
 }
 
 .weather-details-list li {
+  margin-bottom: 8px;
+}
+
+/* TIDES DETAILS LIST */
+.tide-details-list {
+  height: 550px;
+}
+
+.tide-details-list ul {
+  font-size: 20px;
+  list-style-type: none;
+  width: 35%;
+  float: left;
+}
+
+.tide-details-list li {
   margin-bottom: 8px;
 }
 
@@ -75,8 +95,21 @@ th {
   font-size: 20px;
 }
 
-.tides {
+#marine-btn btn {
   color: white;
+  font-size: 18px;
+  margin-right: 40px;
+  border: solid black 2px;
+  font-weight: bolder;
+  float: left;
+}
+
+#tides-btn btn {
+  color: white;
+  font-size: 18px;
+  border: solid black 2px;
+  font-weight: bolder;
+  float: left;
 }
 
 a:hover {
@@ -93,18 +126,13 @@ a:hover {
   #weather-img {
     display: none;
   }
-  /* .weather-details-list ul {
-    width: 50%;
-  }
-  #map {
-    width: 50%;
-    margin-right: 0;
-    margin-bottom: 0; 768
-  } */
 }
+
 @media (max-width: 768px) {
   #map {
     width: 100%;
     margin: 0;
   }
 }
+/* 
+@media (min-width: 1833px); */
