@@ -13,9 +13,9 @@
     </div>
     <div class="container">
       <div id="map"></div>
-      <div class="weather-details-list">
+      <div class="weather-container">
         <img id="weather-img" src="weather.jpg" alt="weather" />
-        <ul>
+        <ul class="weather-details-list">
           <li class="coordinates">(Latitude, Longitude)</li>
           <li class="date">Date:</li>
           <li class="time">Time:</li>
@@ -33,13 +33,6 @@
           <li class="cloud-cover">Cloud Cover:</li>
         </ul>
       </div>
-      <div class="tide-details-list">
-        <ul>
-          <li class="tideTime">Tide Time:</li>
-          <li class="tideHeight">Tide Height:</li>
-          <li class="tideType">Tide Type:</li>
-        </ul>
-      </div>
 
       <button class="main" id="marine-btn">
         Click here to get marine weather information!
@@ -53,15 +46,16 @@
           Click the links in the table below to change your date and time (Time
           Zone: UTC)
         </h1>
+        <div class="time-bar"></div>
         <table class="time-date-bar">
           <tr class="days">
-            <th class="day1">Day 1</th>
-            <th class="day2">Day 2</th>
-            <th class="day3">Day 3</th>
-            <th class="day4">Day 4</th>
-            <th class="day5">Day 5</th>
-            <th class="day6">Day 6</th>
-            <th class="day7">Day 7</th>
+            <th class="day" id="d1">Day 1</th>
+            <th class="day" id="d2">Day 2</th>
+            <th class="day" id="d3">Day 3</th>
+            <th class="day" id="d4">Day 4</th>
+            <th class="day" id="d5">Day 5</th>
+            <th class="day" id="d6">Day 6</th>
+            <th class="day" id="d7">Day 7</th>
           </tr>
           <!-- id for below th, d=day and h=hour -->
           <tr>

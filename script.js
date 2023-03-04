@@ -1,5 +1,6 @@
 const url = "https://api.worldweatheronline.com/premium/v1/marine.ashx";
 const api = "1b982ff97aa44f589c4221439232102";
+responseObj = null;
 
 function formatDate(dateString) {
   return new Date(dateString).toLocaleDateString(undefined, {
@@ -55,7 +56,7 @@ window.initMap = function () {
     )
       .then((data) => data.text())
       .then((response) => {
-        let responseObj = JSON.parse(response);
+        responseObj = JSON.parse(response);
         console.log(responseObj);
         document.querySelectorAll(".timeSelector").forEach((timeSelector) =>
           timeSelector.addEventListener("click", (e) => {
@@ -74,16 +75,17 @@ window.initMap = function () {
 };
 
 function tidesReport(day, responseObj) {
-  let htmlString = "<ul>";
+  let htmlString = "<ul class='tide-details-list'>";
   responseObj.data.weather[day].tides[0].tide_data.forEach((tide) => {
     htmlString += `
-    <li class="tideTime">Tide Time:  ${tide.tideTime}</li>
-    <li class="tideHeight">Tide Height: ${tide.tideHeight_mt} mt</li>
-    <li class="tideType">Tide Type: ${tide.tide_type}</li>
+    <li class="tideTime tideElement">Tide Time:  ${tide.tideTime}</li>
+    <li class="tideHeight tideElement">Tide Height: ${tide.tideHeight_mt} mt</li>
+    <li class="tideType tideElement">Tide Type: ${tide.tide_type}</li>
+    <br>
       `;
     //{tideTime: '12:02 AM', tideHeight_mt: '0.30', tideDateTime: '2023-02-28 00:02', tide_type: 'LOW'}
   });
-  document.querySelector(".tide-details-list").innerHTML = htmlString;
+  document.querySelector(".weather-container").innerHTML = htmlString;
 }
 
 // if th with id "d1h1" is clicked, execute
@@ -104,7 +106,7 @@ function createReport(a, b, responseObj) {
 
   let htmlString = `
   <img id="weather-img" src="${responseObj.data.weather[a].hourly[b].weatherIconUrl[0].value}" alt="weather" />
-  <ul>
+  <ul class="weather-details-list">
     <li class="coordinates">${responseObj.data.request[0].query}</li>
     <li class="date">Date: ${responseObj.data.weather[a].date}</li>
     <li class="time">Time: ${timeString}</li>
@@ -120,15 +122,43 @@ function createReport(a, b, responseObj) {
     <li class="visibility">Visibility: ${responseObj.data.weather[a].hourly[b].visibilityMiles}Miles</li>
     <li class="pressure">Pressure: ${responseObj.data.weather[a].hourly[b].pressure} mb</li>
     <li class="cloud-cover">Cloud Cover: ${responseObj.data.weather[a].hourly[b].cloudcover}%</li>
-    <li class="tides">
-  Click here to get tides information!
-    </li>
   </ul>
 `;
-  document.querySelector(".weather-details-list").innerHTML = htmlString;
-
-  document.querySelector("#tides-btn").addEventListener("click", () => {
-    tidesReport(0, responseObj);
-  });
-  setDates(responseObj.data.weather);
+  document.querySelector(".weather-container").innerHTML = htmlString;
 }
+document.querySelector("#tides-btn").addEventListener("click", () => {
+  tidesReport(0, responseObj);
+});
+
+document.querySelector("#marine-btn").addEventListener("click", () => {
+  createReport(0, 0, responseObj);
+});
+
+document.querySelector(".day").addEventListener("click", (e) => {
+  const dayID = e.target.id;
+  document.querySelector(".time-bar").innerHTML = `
+  <ul>
+    <li id="${dayID}h1" class ="timeSelector"> 12:00am </li>
+    <li id="${dayID}h2" class ="timeSelector"> 3:00am </li>
+    <li id="${dayID}h3" class ="timeSelector"> 6:00am </li>
+    <li id="${dayID}h4" class ="timeSelector"> 9:00am </li>
+    <li id="${dayID}h5" class ="timeSelector"> 12:00pm </li>
+    <li id="${dayID}h6" class ="timeSelector"> 3:00pm </li>
+    <li id="${dayID}h7" class ="timeSelector"> 6:00pm </li>
+    <li id="${dayID}h8" class ="timeSelector"> 9:00pm </li>
+  </ul>
+  `;
+  document.querySelectorAll(".timeSelector").forEach((timeSelector) =>
+    timeSelector.addEventListener("click", (e) => {
+      console.log(e.target.id);
+      let day = parseInt(e.target.id.slice(1, 2)) - 1;
+      let hour = parseInt(e.target.id.slice(3)) - 1;
+      console.log(day);
+      console.log(hour);
+      createReport(day, hour, responseObj);
+      tidesReport(day, responseObj);
+    })
+  );
+});
+
+// setDates(responseObj.data.weather);

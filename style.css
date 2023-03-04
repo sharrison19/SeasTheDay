@@ -37,12 +37,11 @@ body {
   margin: 10px;
 }
 /* MARINE WEATHER DETAILS LIST */
-.weather-details-list {
+.weather-container {
   height: 550px;
-  display: none;
 }
 
-.weather-details-list ul {
+.weather-details-list {
   font-size: 20px;
   list-style-type: none;
   width: 35%;
@@ -54,11 +53,8 @@ body {
 }
 
 /* TIDES DETAILS LIST */
-.tide-details-list {
-  height: 550px;
-}
 
-.tide-details-list ul {
+.tide-details-list {
   font-size: 20px;
   list-style-type: none;
   width: 35%;
@@ -69,6 +65,14 @@ body {
   margin-bottom: 8px;
 }
 
+/* .. */
+
+.time-bar .timeSelector {
+  display: inline;
+  justify-content: space-evenly;
+}
+
+/* .. */
 .time-date-bar {
   width: 100%;
   padding-left: 10px;
