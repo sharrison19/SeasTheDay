@@ -1,6 +1,7 @@
 const url = "https://api.worldweatheronline.com/premium/v1/marine.ashx";
 const api = "1b982ff97aa44f589c4221439232102";
 responseObj = null;
+let isTides = false;
 
 function formatDate(dateString) {
   return new Date(dateString).toLocaleDateString(undefined, {
@@ -15,7 +16,8 @@ function setDates(weather) {
   for (let i = 0; i < weather.length; i++) {
     const newDate = formatDate(weather[i].date);
     console.log({ i, date: weather[i].date, newDate });
-    document.querySelector(`.day${i + 1}`).innerHTML = newDate;
+    document.querySelector(`.day${i + 1}`).innerHTML = `
+    <li class="day" id="d${i + 1}">${newDate}</li>`;
   }
 }
 
@@ -58,17 +60,7 @@ window.initMap = function () {
       .then((response) => {
         responseObj = JSON.parse(response);
         console.log(responseObj);
-        document.querySelectorAll(".timeSelector").forEach((timeSelector) =>
-          timeSelector.addEventListener("click", (e) => {
-            console.log(e.target.id);
-            let day = parseInt(e.target.id.slice(1, 2)) - 1;
-            let hour = parseInt(e.target.id.slice(3)) - 1;
-            console.log(day);
-            console.log(hour);
-            createReport(day, hour, responseObj);
-            tidesReport(day, responseObj);
-          })
-        );
+        setDates(responseObj.data.weather);
         createReport(0, 0, responseObj);
       });
   });
@@ -86,11 +78,14 @@ function tidesReport(day, responseObj) {
     //{tideTime: '12:02 AM', tideHeight_mt: '0.30', tideDateTime: '2023-02-28 00:02', tide_type: 'LOW'}
   });
   document.querySelector(".weather-container").innerHTML = htmlString;
+  document.querySelector(".hours").style.display = "none";
+  isTides = true;
 }
 
 // if th with id "d1h1" is clicked, execute
 function createReport(a, b, responseObj) {
   //when th id = d1h1, a = 0 b = 0        api gives 7 days, but 8 hrs so cant use same variable
+  console.log(a, b);
   let time = responseObj.data.weather[a].hourly[b].time;
   let timeString = "";
   if (time < 1200 && time != 0) {
@@ -105,26 +100,54 @@ function createReport(a, b, responseObj) {
   } else timeString = "12:00pm";
 
   let htmlString = `
-  <img id="weather-img" src="${responseObj.data.weather[a].hourly[b].weatherIconUrl[0].value}" alt="weather" />
+  <img id="weather-img" src="${
+    responseObj.data.weather[a].hourly[b].weatherIconUrl[0].value
+  }" alt="weather" />
   <ul class="weather-details-list">
     <li class="coordinates">${responseObj.data.request[0].query}</li>
-    <li class="date">Date: ${responseObj.data.weather[a].date}</li>
+    <li class="date">Date: ${formatDate(responseObj.data.weather[a].date)}</li>
     <li class="time">Time: ${timeString}</li>
-    <li class="temp">Temperature: ${responseObj.data.weather[a].hourly[b].tempF} °F</li>
-    <li class="swell-height">Swell Height: ${responseObj.data.weather[a].hourly[b].swellHeight_ft} Ft</li>
-    <li class="swell-period">Swell Period: ${responseObj.data.weather[a].hourly[b].swellPeriod_secs} seconds</li>
-    <li class="swell-direction">Swell Direction: ${responseObj.data.weather[a].hourly[b].swellDir}°</li>
-    <li class="wind-speed">Wind Speed: ${responseObj.data.weather[a].hourly[b].windspeedMiles}mph</li>
-    <li class="wind-direction">Wind Direction: ${responseObj.data.weather[a].hourly[b].winddir16Point}</li>
-    <li class="description">Description: ${responseObj.data.weather[a].hourly[b].weatherDesc[0].value}</li>
-    <li class="precipitation">Precipitation: ${responseObj.data.weather[a].hourly[b].precipInches}in</li>
-    <li class="humidity">Humidity: ${responseObj.data.weather[a].hourly[b].humidity}%</li>
-    <li class="visibility">Visibility: ${responseObj.data.weather[a].hourly[b].visibilityMiles}Miles</li>
-    <li class="pressure">Pressure: ${responseObj.data.weather[a].hourly[b].pressure} mb</li>
-    <li class="cloud-cover">Cloud Cover: ${responseObj.data.weather[a].hourly[b].cloudcover}%</li>
+    <li class="temp">Temperature: ${
+      responseObj.data.weather[a].hourly[b].tempF
+    } °F</li>
+    <li class="swell-height">Swell Height: ${
+      responseObj.data.weather[a].hourly[b].swellHeight_ft
+    } Ft</li>
+    <li class="swell-period">Swell Period: ${
+      responseObj.data.weather[a].hourly[b].swellPeriod_secs
+    } seconds</li>
+    <li class="swell-direction">Swell Direction: ${
+      responseObj.data.weather[a].hourly[b].swellDir
+    }°</li>
+    <li class="wind-speed">Wind Speed: ${
+      responseObj.data.weather[a].hourly[b].windspeedMiles
+    }mph</li>
+    <li class="wind-direction">Wind Direction: ${
+      responseObj.data.weather[a].hourly[b].winddir16Point
+    }</li>
+    <li class="description">Description: ${
+      responseObj.data.weather[a].hourly[b].weatherDesc[0].value
+    }</li>
+    <li class="precipitation">Precipitation: ${
+      responseObj.data.weather[a].hourly[b].precipInches
+    }in</li>
+    <li class="humidity">Humidity: ${
+      responseObj.data.weather[a].hourly[b].humidity
+    }%</li>
+    <li class="visibility">Visibility: ${
+      responseObj.data.weather[a].hourly[b].visibilityMiles
+    }Miles</li>
+    <li class="pressure">Pressure: ${
+      responseObj.data.weather[a].hourly[b].pressure
+    } mb</li>
+    <li class="cloud-cover">Cloud Cover: ${
+      responseObj.data.weather[a].hourly[b].cloudcover
+    }%</li>
   </ul>
 `;
   document.querySelector(".weather-container").innerHTML = htmlString;
+  isTides = false;
+  document.querySelector(".hours").style.display = "flex";
 }
 document.querySelector("#tides-btn").addEventListener("click", () => {
   tidesReport(0, responseObj);
@@ -134,31 +157,39 @@ document.querySelector("#marine-btn").addEventListener("click", () => {
   createReport(0, 0, responseObj);
 });
 
-document.querySelector(".day").addEventListener("click", (e) => {
-  const dayID = e.target.id;
-  document.querySelector(".time-bar").innerHTML = `
-  <ul>
-    <li id="${dayID}h1" class ="timeSelector"> 12:00am </li>
-    <li id="${dayID}h2" class ="timeSelector"> 3:00am </li>
-    <li id="${dayID}h3" class ="timeSelector"> 6:00am </li>
-    <li id="${dayID}h4" class ="timeSelector"> 9:00am </li>
-    <li id="${dayID}h5" class ="timeSelector"> 12:00pm </li>
-    <li id="${dayID}h6" class ="timeSelector"> 3:00pm </li>
-    <li id="${dayID}h7" class ="timeSelector"> 6:00pm </li>
-    <li id="${dayID}h8" class ="timeSelector"> 9:00pm </li>
-  </ul>
-  `;
-  document.querySelectorAll(".timeSelector").forEach((timeSelector) =>
-    timeSelector.addEventListener("click", (e) => {
-      console.log(e.target.id);
-      let day = parseInt(e.target.id.slice(1, 2)) - 1;
-      let hour = parseInt(e.target.id.slice(3)) - 1;
-      console.log(day);
-      console.log(hour);
-      createReport(day, hour, responseObj);
+document.querySelectorAll(".day").forEach((daySelector) =>
+  daySelector.addEventListener("click", (e) => {
+    const dayID = e.target.id;
+    console.log(dayID);
+    let day = parseInt(dayID.slice(1, 2)) - 1;
+    if (isTides) {
       tidesReport(day, responseObj);
-    })
-  );
-});
+    } else {
+      createReport(day, 0, responseObj);
+      let timeBar = document.querySelector(".time-bar");
+      timeBar.innerHTML = `
+      <ul class = "hours">
+        <li id="${dayID}h1" class ="timeSelector"> 12:00am </li>
+        <li id="${dayID}h2" class ="timeSelector"> 3:00am </li>
+        <li id="${dayID}h3" class ="timeSelector"> 6:00am </li>
+        <li id="${dayID}h4" class ="timeSelector"> 9:00am </li>
+        <li id="${dayID}h5" class ="timeSelector"> 12:00pm </li>
+        <li id="${dayID}h6" class ="timeSelector"> 3:00pm </li>
+        <li id="${dayID}h7" class ="timeSelector"> 6:00pm </li>
+        <li id="${dayID}h8" class ="timeSelector"> 9:00pm </li>
+      </ul>
+      `;
 
-// setDates(responseObj.data.weather);
+      document.querySelectorAll(".timeSelector").forEach((timeSelector) =>
+        timeSelector.addEventListener("click", (e) => {
+          console.log(e.target.id);
+          let day = parseInt(e.target.id.slice(1, 2)) - 1;
+          let hour = parseInt(e.target.id.slice(3)) - 1;
+          console.log(day);
+          console.log(hour);
+          createReport(day, hour, responseObj);
+        })
+      );
+    }
+  })
+);

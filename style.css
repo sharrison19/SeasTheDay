@@ -27,19 +27,17 @@ body {
 #map {
   height: 500px;
   width: 40%;
-  float: left;
   margin: 10px;
+  float: left;
 }
 #weather-img {
   height: 150px;
   width: 150px;
-  float: right;
   margin: 10px;
+  float: right;
 }
+
 /* MARINE WEATHER DETAILS LIST */
-.weather-container {
-  height: 550px;
-}
 
 .weather-details-list {
   font-size: 20px;
@@ -67,16 +65,41 @@ body {
 
 /* .. */
 
-.time-bar .timeSelector {
-  display: inline;
-  justify-content: space-evenly;
+.time-bar ul {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+.timeSelector {
+  display: block;
+  flex: 0 1 auto;
+  list-style-type: none;
+  margin-left: 40px;
+  margin-right: 40px;
+  font-size: 20px;
 }
 
-/* .. */
-.time-date-bar {
+.buttons {
+  float: left;
+  margin-left: 20px;
   width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+}
+#marine-btn btn {
+  color: white;
+  font-size: 18px;
+  border: solid black 2px;
+  font-weight: bolder;
+}
+
+#tides-btn btn {
+  color: white;
+  font-size: 18px;
+  border: solid black 2px;
+  font-weight: bolder;
 }
 
 #bar {
@@ -90,30 +113,22 @@ body {
   padding-bottom: 10px;
 }
 
-th {
-  font-size: 15px;
-  border: 1px solid;
-}
-
 .days {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.day {
+  display: block;
+  flex: 0 1 auto;
+  list-style-type: none;
+  margin-left: 25px;
+  margin-right: 25px;
   font-size: 20px;
-}
-
-#marine-btn btn {
-  color: white;
-  font-size: 18px;
-  margin-right: 40px;
-  border: solid black 2px;
-  font-weight: bolder;
-  float: left;
-}
-
-#tides-btn btn {
-  color: white;
-  font-size: 18px;
-  border: solid black 2px;
-  font-weight: bolder;
-  float: left;
 }
 
 a:hover {
@@ -126,7 +141,7 @@ a:hover {
 
 /* media queries */
 
-@media (max-width: 919px) {
+/* @media (max-width: 919px) {
   #weather-img {
     display: none;
   }
@@ -137,6 +152,6 @@ a:hover {
     width: 100%;
     margin: 0;
   }
-}
+} */
 /* 
 @media (min-width: 1833px); */

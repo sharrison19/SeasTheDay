@@ -11,7 +11,7 @@
     <div class="title">
       <h1>Seas The Day</h1>
     </div>
-    <div class="container">
+    <div class="container1">
       <div id="map"></div>
       <div class="weather-container">
         <img id="weather-img" src="weather.jpg" alt="weather" />
@@ -33,32 +33,43 @@
           <li class="cloud-cover">Cloud Cover:</li>
         </ul>
       </div>
-
+    </div>
+    <div class="buttons">
       <button class="main" id="marine-btn">
         Click here to get marine weather information!
       </button>
       <button class="tides" id="tides-btn">
         Click here to get tides information!
       </button>
-
-      <div id="bar">
-        <h1>
-          Click the links in the table below to change your date and time (Time
-          Zone: UTC)
-        </h1>
-        <div class="time-bar"></div>
-        <table class="time-date-bar">
-          <tr class="days">
-            <th class="day" id="d1">Day 1</th>
-            <th class="day" id="d2">Day 2</th>
-            <th class="day" id="d3">Day 3</th>
-            <th class="day" id="d4">Day 4</th>
-            <th class="day" id="d5">Day 5</th>
-            <th class="day" id="d6">Day 6</th>
-            <th class="day" id="d7">Day 7</th>
-          </tr>
-          <!-- id for below th, d=day and h=hour -->
-          <tr>
+    </div>
+    <div id="bar">
+      <h1>
+        Click the links in the table below to change your date and time (Time
+        Zone: UTC)
+      </h1>
+      <div class="time-bar">
+        <ul class="hours">
+          <li class="timeSelector">12:00am</li>
+          <li class="timeSelector">3:00am</li>
+          <li class="timeSelector">6:00am</li>
+          <li class="timeSelector">9:00am</li>
+          <li class="timeSelector">12:00pm</li>
+          <li class="timeSelector">3:00pm</li>
+          <li class="timeSelector">6:00pm</li>
+          <li class="timeSelector">9:00pm</li>
+        </ul>
+      </div>
+      <ul class="days">
+        <li class="day day1" id="d1">Day 1</li>
+        <li class="day day2" id="d2">Day 2</li>
+        <li class="day day3" id="d3">Day 3</li>
+        <li class="day day4" id="d4">Day 4</li>
+        <li class="day day5" id="d5">Day 5</li>
+        <li class="day day6" id="d6">Day 6</li>
+        <li class="day day7" id="d7">Day 7</li>
+      </ul>
+      <!-- id for below th, d=day and h=hour -->
+      <!-- <tr>
             <th id="d1h1" class="timeSelector">12:00am</th>
             <th id="d2h1" class="timeSelector">12:00am</th>
             <th id="d3h1" class="timeSelector">12:00am</th>
@@ -129,9 +140,7 @@
             <th id="d5h8" class="timeSelector">9:00pm</th>
             <th id="d6h8" class="timeSelector">9:00pm</th>
             <th id="d7h8" class="timeSelector">9:00pm</th>
-          </tr>
-        </table>
-      </div>
+          </tr> -->
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="./script.js"></script>
