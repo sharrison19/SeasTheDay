@@ -28,18 +28,14 @@ window.initMap = function () {
     zoom: 10,
     center: myLatlng,
   });
-  // Create the initial InfoWindow.
   let infoWindow = new google.maps.InfoWindow({
     content: "Click the map to get the marine weather!",
     position: myLatlng,
   });
 
   infoWindow.open(map);
-  // Configure the click listener.
   map.addListener("click", (mapsMouseEvent) => {
-    // Close the current InfoWindow.
     infoWindow.close();
-    // Create a new InfoWindow.
     infoWindow = new google.maps.InfoWindow({
       position: mapsMouseEvent.latLng,
     });
@@ -47,7 +43,6 @@ window.initMap = function () {
       JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
     );
     infoWindow.open(map);
-    // document.querySelector(".coordinates").innerHTML = mapsMouseEvent.latLng;
     fetch(
       url +
         "/?key=" +
@@ -59,7 +54,6 @@ window.initMap = function () {
       .then((data) => data.text())
       .then((response) => {
         responseObj = JSON.parse(response);
-        console.log(responseObj);
         setDates(responseObj.data.weather);
         createReport(0, 0, responseObj);
       });
@@ -75,17 +69,13 @@ function tidesReport(day, responseObj) {
     <li class="tideType tideElement">Tide Type: ${tide.tide_type}</li>
     <br>
       `;
-    //{tideTime: '12:02 AM', tideHeight_mt: '0.30', tideDateTime: '2023-02-28 00:02', tide_type: 'LOW'}
   });
   document.querySelector(".weather-container").innerHTML = htmlString;
   document.querySelector(".hours").style.display = "none";
   isTides = true;
 }
 
-// if th with id "d1h1" is clicked, execute
 function createReport(a, b, responseObj) {
-  //when th id = d1h1, a = 0 b = 0        api gives 7 days, but 8 hrs so cant use same variable
-  console.log(a, b);
   let time = responseObj.data.weather[a].hourly[b].time;
   let timeString = "";
   if (time < 1200 && time != 0) {
@@ -96,7 +86,6 @@ function createReport(a, b, responseObj) {
     timeString = time + ":00pm";
   } else if (time == 0) {
     timeString = "12:00am";
-    //should return when time is 0, always going to be 12AM
   } else timeString = "12:00pm";
 
   let htmlString = `
@@ -121,7 +110,7 @@ function createReport(a, b, responseObj) {
     }°</li>
     <li class="wind-speed">Wind Speed: ${
       responseObj.data.weather[a].hourly[b].windspeedMiles
-    }mph</li>
+    } mph</li>
     <li class="wind-direction">Wind Direction: ${
       responseObj.data.weather[a].hourly[b].winddir16Point
     }</li>
@@ -130,13 +119,13 @@ function createReport(a, b, responseObj) {
     }</li>
     <li class="precipitation">Precipitation: ${
       responseObj.data.weather[a].hourly[b].precipInches
-    }in</li>
+    } in</li>
     <li class="humidity">Humidity: ${
       responseObj.data.weather[a].hourly[b].humidity
     }%</li>
     <li class="visibility">Visibility: ${
       responseObj.data.weather[a].hourly[b].visibilityMiles
-    }Miles</li>
+    } mi</li>
     <li class="pressure">Pressure: ${
       responseObj.data.weather[a].hourly[b].pressure
     } mb</li>
@@ -160,7 +149,6 @@ document.querySelector("#marine-btn").addEventListener("click", () => {
 document.querySelectorAll(".day").forEach((daySelector) =>
   daySelector.addEventListener("click", (e) => {
     const dayID = e.target.id;
-    console.log(dayID);
     let day = parseInt(dayID.slice(1, 2)) - 1;
     if (isTides) {
       tidesReport(day, responseObj);
@@ -182,11 +170,8 @@ document.querySelectorAll(".day").forEach((daySelector) =>
 
       document.querySelectorAll(".timeSelector").forEach((timeSelector) =>
         timeSelector.addEventListener("click", (e) => {
-          console.log(e.target.id);
           let day = parseInt(e.target.id.slice(1, 2)) - 1;
           let hour = parseInt(e.target.id.slice(3)) - 1;
-          console.log(day);
-          console.log(hour);
           createReport(day, hour, responseObj);
         })
       );
