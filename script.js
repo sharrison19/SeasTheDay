@@ -64,9 +64,9 @@ function tidesReport(day, responseObj) {
   let htmlString = "<ul class='tide-details-list'>";
   responseObj.data.weather[day].tides[0].tide_data.forEach((tide) => {
     htmlString += `
+    <li class="tideType tideElement">Tide Type: ${tide.tide_type}</li>
     <li class="tideTime tideElement">Tide Time:  ${tide.tideTime}</li>
     <li class="tideHeight tideElement">Tide Height: ${tide.tideHeight_mt} mt</li>
-    <li class="tideType tideElement">Tide Type: ${tide.tide_type}</li>
     <br>
       `;
   });
