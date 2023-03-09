@@ -60,6 +60,7 @@ window.initMap = function () {
   });
 };
 
+//Takes in the object and creates tides report
 function tidesReport(day, responseObj) {
   let htmlString = "<ul class='tide-details-list'>";
   responseObj.data.weather[day].tides[0].tide_data.forEach((tide) => {
@@ -74,19 +75,19 @@ function tidesReport(day, responseObj) {
   document.querySelector(".hours").style.display = "none";
   isTides = true;
 }
-
+//Takes in the object and creates marine weather report
 function createReport(a, b, responseObj) {
   let time = responseObj.data.weather[a].hourly[b].time;
   let timeString = "";
   if (time < 1200 && time != 0) {
     time = time / 100;
-    timeString = time + ":00am";
+    timeString = time + ":00 AM";
   } else if (time > 1200) {
     time = time / 100 - 12;
-    timeString = time + ":00pm";
+    timeString = time + ":00 PM";
   } else if (time == 0) {
-    timeString = "12:00am";
-  } else timeString = "12:00pm";
+    timeString = "12:00 AM";
+  } else timeString = "12:00 PM";
 
   let htmlString = `
   <img id="weather-img" src="${
@@ -101,7 +102,7 @@ function createReport(a, b, responseObj) {
     } °F</li>
     <li class="swell-height">Swell Height: ${
       responseObj.data.weather[a].hourly[b].swellHeight_ft
-    } Ft</li>
+    } ft </li>
     <li class="swell-period">Swell Period: ${
       responseObj.data.weather[a].hourly[b].swellPeriod_secs
     } seconds</li>
@@ -157,14 +158,14 @@ document.querySelectorAll(".day").forEach((daySelector) =>
       let timeBar = document.querySelector(".time-bar");
       timeBar.innerHTML = `
       <ul class = "hours">
-        <li id="${dayID}h1" class ="timeSelector"> 12:00am </li>
-        <li id="${dayID}h2" class ="timeSelector"> 3:00am </li>
-        <li id="${dayID}h3" class ="timeSelector"> 6:00am </li>
-        <li id="${dayID}h4" class ="timeSelector"> 9:00am </li>
-        <li id="${dayID}h5" class ="timeSelector"> 12:00pm </li>
-        <li id="${dayID}h6" class ="timeSelector"> 3:00pm </li>
-        <li id="${dayID}h7" class ="timeSelector"> 6:00pm </li>
-        <li id="${dayID}h8" class ="timeSelector"> 9:00pm </li>
+        <li id="${dayID}h1" class ="timeSelector"> 12:00 AM </li>
+        <li id="${dayID}h2" class ="timeSelector"> 3:00 AM </li>
+        <li id="${dayID}h3" class ="timeSelector"> 6:00 AM </li>
+        <li id="${dayID}h4" class ="timeSelector"> 9:00 AM </li>
+        <li id="${dayID}h5" class ="timeSelector"> 12:00 PM </li>
+        <li id="${dayID}h6" class ="timeSelector"> 3:00 PM </li>
+        <li id="${dayID}h7" class ="timeSelector"> 6:00 PM </li>
+        <li id="${dayID}h8" class ="timeSelector"> 9:00 PM </li>
       </ul>
       `;
 

@@ -1,2 +1,5 @@
 # SeasTheDay
-Seas The Day marine weather app
+
+Seas The Day
+
+https://sharrison19.github.io/SeasTheDay/
