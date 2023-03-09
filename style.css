@@ -1,6 +1,7 @@
 html {
   min-height: 100%;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -24,14 +25,15 @@ body {
 }
 
 #map {
-  height: 500px;
+  height: 525px;
   width: 40%;
-  margin: 10px;
+  margin: 20px;
   float: left;
 }
 #weather-img {
   height: 150px;
   width: 150px;
+  margin: 20px;
   margin: 10px;
   float: right;
 }
@@ -76,17 +78,18 @@ body {
   margin-left: 0px;
   margin-right: 0px;
   font-size: 20px;
+  margin-top: 20px;
 }
 
 .buttons {
-  float: left;
-  margin-left: 20px;
-  width: 70%;
+  width: 50%;
+  margin-top: 20px;
+  float: right;
 }
 #marine-btn {
   color: black;
   font-size: 15px;
-  height: 30px;
+  height: 35px;
   border: solid black 2px;
   font-weight: bolder;
 }
@@ -94,9 +97,10 @@ body {
 #tides-btn {
   color: black;
   font-size: 15px;
-  height: 30px;
+  height: 35px;
   border: solid black 2px;
   font-weight: bolder;
+  margin-left: 20px;
 }
 
 #bar {
@@ -104,11 +108,11 @@ body {
   width: 100%;
 }
 
-#bar h1 {
+h2 {
   font-size: 20px;
   text-align: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
 
 .days {
@@ -143,23 +147,101 @@ a:hover {
   cursor: pointer;
 }
 .day:hover {
-  font-weight: bolder;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+#marine-btn:hover {
+  cursor: pointer;
+}
+
+#tides-btn:hover {
   cursor: pointer;
 }
 
 /* media queries */
 
-/* @media (max-width: 919px) {
+@media (max-width: 1100px) {
+  .days {
+    margin: 0;
+    padding: 0;
+    width: calc(100% - 4px);
+  }
+  .day {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1000px) {
+  #weather-img {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 930px) {
+  .day {
+    font-size: 15px;
+  }
+  .timeSelector {
+    font-size: 15px;
+  }
+}
+@media (max-width: 799px) {
   #weather-img {
     display: none;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   #map {
-    width: 100%;
-    margin: 0;
+    width: calc(100% - 10px);
+    height: 300px;
+    margin: 5px 5px 0 5px;
   }
-} */
-/* 
-@media (min-width: 1833px); */
+
+  .weather-details-list {
+    margin: 10px 5px 0 5px;
+    padding: 0;
+    width: calc(100% - 10px);
+    text-align: center;
+  }
+
+  .tide-details-list {
+    margin: 10px 5px 0 5px;
+    padding: 0;
+    width: calc(100% - 10px);
+    text-align: center;
+  }
+
+  .buttons {
+    width: calc(100% - 4px);
+    margin: 10px 5px 0 5px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 15px;
+    margin: 10px 0 10px 0;
+  }
+  h1 {
+    text-align: center;
+    margin: 10px 0 10px 0;
+  }
+}
+
+@media (max-width: 376px) {
+  .time-bar ul {
+    margin: 0 0 10px 0;
+    width: 100%;
+  }
+  #marine-btn {
+    height: 25px;
+    font-size: 12px;
+  }
+  #tides-btn {
+    height: 25px;
+    font-size: 12px;
+  }
+}
