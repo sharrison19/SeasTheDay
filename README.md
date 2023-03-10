@@ -12,7 +12,7 @@ https://sharrison19.github.io/SeasTheDay/
 
 ## Summary
 
-Seas The Day takes an input of longitude and latitude from the Google Maps API and generates two reports based on those coordinates. The first report returns the following data:
+First, the user is required to click on the map to get the longitude and latitude of their location. Next, the user must click the date they wish to view the data. Once the date is selected, the user can toggle between different times or chose another date. Seas The Day generates two reports based on the coordinates, date and time. The first report returns the following data:
 * Date
 * Time
 * Temperature
@@ -28,7 +28,7 @@ Seas The Day takes an input of longitude and latitude from the Google Maps API a
 * Pressure
 * Cloud Cover
 
-The second report is specifically for our tides data. This report will let you know the tide type(High or Low), tide time and tide height.
+The second report is specifically for the tides data. This report will inform the user of the tide type(High or Low), tide time and tide height.
 
 ## Technology
 
