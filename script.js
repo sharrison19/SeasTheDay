@@ -60,7 +60,6 @@ window.initMap = function () {
   });
 };
 
-//Takes in the object and creates tides report
 function tidesReport(day, responseObj) {
   let htmlString = "<ul class='tide-details-list'>";
   responseObj.data.weather[day].tides[0].tide_data.forEach((tide) => {
@@ -75,7 +74,6 @@ function tidesReport(day, responseObj) {
   document.querySelector(".hours").style.display = "none";
   isTides = true;
 }
-//Takes in the object and creates marine weather report
 function createReport(a, b, responseObj) {
   let time = responseObj.data.weather[a].hourly[b].time;
   let timeString = "";
