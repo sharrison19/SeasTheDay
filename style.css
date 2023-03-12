@@ -33,7 +33,6 @@ body {
 #weather-img {
   height: 150px;
   width: 150px;
-  margin: 20px;
   margin: 10px;
   float: right;
 }
@@ -43,6 +42,7 @@ body {
   list-style-type: none;
   width: 35%;
   float: left;
+  text-align: center;
 }
 
 .weather-details-list li {
@@ -54,6 +54,7 @@ body {
   list-style-type: none;
   width: 35%;
   float: left;
+  text-align: center;
 }
 
 .tide-details-list li {
@@ -63,22 +64,18 @@ body {
 .time-bar ul {
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
-  width: calc(100% - 300px);
+  justify-content: space-evenly;
+  width: calc(100% - 200px);
   margin: 0;
   padding: 0;
-  margin-left: 150px;
-  margin-right: 150px;
-  margin-bottom: 20px;
+  margin: 0 100px 20px 100px;
 }
 .timeSelector {
   display: block;
   flex: 0 1 auto;
   list-style-type: none;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin: 20px 0 0 0;
   font-size: 20px;
-  margin-top: 20px;
 }
 
 .buttons {
@@ -111,21 +108,16 @@ body {
 h2 {
   font-size: 20px;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 0px;
+  margin: 20px 0 0 0;
 }
 
 .days {
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
-  width: calc(100% - 44px);
-  margin: 0;
-  margin-left: 10px;
-  margin-right: 10px;
+  justify-content: space-evenly;
+  width: auto;
+  text-align: center;
   padding: 0;
-  padding-left: 10px;
-  padding-right: 10px;
   border: solid black 2px;
 }
 
@@ -133,8 +125,6 @@ h2 {
   display: block;
   flex: 0 1 auto;
   list-style-type: none;
-  padding-left: 0;
-  padding-right: 0;
   font-size: 20px;
 }
 
@@ -164,16 +154,13 @@ a:hover {
 
 @media (max-width: 1100px) {
   .days {
-    margin: 0;
+    margin: 0 10px 0 10px;
     padding: 0;
-    width: calc(100% - 4px);
+    width: calc(100% - 24px);
   }
   .day {
     font-size: 18px;
   }
-}
-
-@media (max-width: 1000px) {
   #weather-img {
     height: 100px;
     width: 100px;
@@ -192,6 +179,17 @@ a:hover {
   #weather-img {
     display: none;
   }
+  .day {
+    padding: 0 10px 0 10px;
+  }
+  .time-bar ul {
+    margin: 0 10px 0 10px;
+    width: calc(100% - 20px);
+  }
+  .buttons {
+    width: auto;
+    margin-right: 10px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -205,14 +203,12 @@ a:hover {
     margin: 10px 5px 0 5px;
     padding: 0;
     width: calc(100% - 10px);
-    text-align: center;
   }
 
   .tide-details-list {
     margin: 10px 5px 0 5px;
     padding: 0;
     width: calc(100% - 10px);
-    text-align: center;
   }
 
   .buttons {
@@ -229,12 +225,26 @@ a:hover {
     text-align: center;
     margin: 10px 0 10px 0;
   }
+
+  #bar {
+    order: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .days {
+    margin: 0 5px 0 5px;
+    width: auto;
+  }
+  .day {
+    padding: 0;
+  }
 }
 
 @media (max-width: 376px) {
   .time-bar ul {
     margin: 0 0 10px 0;
-    width: 100%;
+    width: auto;
   }
   #marine-btn {
     height: 25px;

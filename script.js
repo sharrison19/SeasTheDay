@@ -39,9 +39,15 @@ window.initMap = function () {
     infoWindow = new google.maps.InfoWindow({
       position: mapsMouseEvent.latLng,
     });
-    infoWindow.setContent(
-      JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-    );
+    let lat = mapsMouseEvent.latLng.lat();
+    let lng = mapsMouseEvent.latLng.lng();
+
+    lat = (Math.round(lat * 1000000) / 1000000).toFixed(6);
+    lng = (Math.round(lng * 1000000) / 1000000).toFixed(6);
+    let latlng = { lat, lng };
+    infoWindow.setContent(`
+    Lat: ${lat}, Lng: ${lng}
+    `);
     infoWindow.open(map);
     fetch(
       url +
