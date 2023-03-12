@@ -8,7 +8,7 @@ https://sharrison19.github.io/SeasTheDay/
 
 ## Screenshot
 
-![SeasTheDay](https://user-images.githubusercontent.com/123839116/224189701-b03a017f-0139-40ba-8dd9-36af2b27517f.png)
+![SeasTheDay](https://user-images.githubusercontent.com/123839116/224518304-a6b5addf-1c50-4642-a2ec-285bc012dd9c.png)
 
 ## Summary
 
