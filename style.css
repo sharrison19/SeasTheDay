@@ -22,6 +22,7 @@ body {
   border-bottom: solid black 2px;
   color: rgb(60, 222, 222);
   padding-left: 20px;
+  font-size: 20px;
 }
 
 #map {
@@ -67,15 +68,16 @@ body {
   justify-content: space-evenly;
   width: calc(100% - 200px);
   margin: 0;
-  padding: 0;
-  margin: 0 100px 20px 100px;
+  padding: 0 100px 0 100px;
+  border-top: solid black 2px;
 }
 .timeSelector {
   display: block;
   flex: 0 1 auto;
   list-style-type: none;
-  margin: 20px 0 0 0;
+  margin: 0;
   font-size: 20px;
+  padding: 20px 0 20px 0;
 }
 
 .buttons {
@@ -102,7 +104,10 @@ body {
 
 #bar {
   float: left;
-  width: 100%;
+  width: calc(100% - 14px);
+  border: solid black 2px;
+  margin: 20px 5px 0 5px;
+  background: silver;
 }
 
 h2 {
@@ -113,19 +118,25 @@ h2 {
 
 .days {
   display: flex;
-  align-items: stretch;
+  flex-flow: row wrap;
   justify-content: space-evenly;
   width: auto;
   text-align: center;
+  margin: 0;
   padding: 0;
-  border: solid black 2px;
 }
 
 .day {
   display: block;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
+  position: relative;
   list-style-type: none;
   font-size: 20px;
+  padding: 10px 0 10px 0;
+}
+
+.day + .day {
+  border-left: solid black 2px;
 }
 
 a:hover {
@@ -133,13 +144,12 @@ a:hover {
 }
 
 .timeSelector:hover {
-  color: white;
   cursor: pointer;
+  font-weight: bold;
 }
 .day:hover {
   font-weight: bold;
   cursor: pointer;
-  color: white;
 }
 
 #marine-btn:hover {
@@ -183,16 +193,19 @@ a:hover {
     padding: 0 10px 0 10px;
   }
   .time-bar ul {
-    margin: 0 10px 0 10px;
-    width: calc(100% - 20px);
+    padding: 0;
+    width: 100%;
   }
   .buttons {
     width: auto;
     margin-right: 10px;
   }
+  .days {
+    flex-flow: row;
+  }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 702px) {
   #map {
     width: calc(100% - 10px);
     height: 300px;
@@ -238,6 +251,9 @@ a:hover {
   }
   .day {
     padding: 0;
+  }
+  .timeSelector {
+    padding: 10px 0 10px 0;
   }
 }
 
