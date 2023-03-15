@@ -25,7 +25,7 @@ window.initMap = function () {
   console.log("initMapCalled");
   const myLatlng = { lat: 41.6821, lng: -69.9598 };
   const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 10,
+    zoom: 9,
     center: myLatlng,
   });
   let infoWindow = new google.maps.InfoWindow({
