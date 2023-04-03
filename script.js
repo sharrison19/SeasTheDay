@@ -15,14 +15,12 @@ function formatDate(dateString) {
 function setDates(weather) {
   for (let i = 0; i < weather.length; i++) {
     const newDate = formatDate(weather[i].date);
-    console.log({ i, date: weather[i].date, newDate });
     document.querySelector(`.day${i + 1}`).innerHTML = `
     <li class="day" id="d${i + 1}">${newDate}</li>`;
   }
 }
 
 window.initMap = function () {
-  console.log("initMapCalled");
   const myLatlng = { lat: 41.6821, lng: -69.9598 };
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 9,
